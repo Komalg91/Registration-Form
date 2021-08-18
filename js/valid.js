@@ -1,5 +1,5 @@
 const username = document.getElementById('username');
-
+const email = document.getElementById('email');
 
 
 function showSuccess(input){
@@ -14,6 +14,7 @@ function showError(input, message) {
     small.innerText = message;
 }
 
+//UC1
 function check_username(input){
     const min_user = 3;
     const max_user = 20;
@@ -28,6 +29,17 @@ function check_username(input){
     }
 }
 
+//UC2
+function check_email(input){
+    const regex_email =  /^([a-zA-Z0-9_.]+)(@)([a-zA-Z]+)(.)([a-zA-Z]+)(.)?([a-zA-Z]?)$/;
+    if(regex_email.test(input.value.trim())==false)
+    {
+        showError(input, `${input.id} is invalid`);
+    }
+    else{
+        showSuccess(input);
+    }
+}
 
 function checkRequired(input_ele){
     input_ele.forEach(input => {
@@ -42,8 +54,9 @@ function checkRequired(input_ele){
 
 const validate = () => {
     
-    checkRequired([username]);
+    checkRequired([username,email]);
     check_username(username);
+    check_email(email);
     
 
 }    

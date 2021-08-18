@@ -1,5 +1,7 @@
 const username = document.getElementById('username');
 const email = document.getElementById('email');
+const password = document.getElementById('password');
+const c_password = document.getElementById('c_password');
 
 
 function showSuccess(input){
@@ -41,6 +43,24 @@ function check_email(input){
     }
 }
 
+//UC3
+function check_password(input){
+    const regex_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if(regex_password.test(input.value.trim())==false)
+    {
+        showError(input, `${input.id} pattern is not matching`);
+    }
+    else{
+        showSuccess(input);
+    }
+}
+
+function check_c_password(input1, input){
+    if(input.value !== input1.value){
+            showError(input, 'Password is not matching');
+    }
+}
+
 function checkRequired(input_ele){
     input_ele.forEach(input => {
         if(input.value.trim() === ''){
@@ -57,6 +77,8 @@ const validate = () => {
     checkRequired([username,email]);
     check_username(username);
     check_email(email);
+    check_password(password);
+    check_c_password(password,c_password);
     
 
 }    
